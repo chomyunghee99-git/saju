@@ -57,9 +57,23 @@
   .sec .head p.sub{font-size:15px;color:var(--soft);margin-top:14px;max-width:380px;margin-left:auto;margin-right:auto;}
 
   .why{display:flex;flex-direction:column;gap:14px;}
-  .wcard{background:linear-gradient(165deg,var(--card),var(--card-2));border:1px solid var(--line);
-    border-radius:22px;padding:26px 24px;}
-  .wcard .q{font-size:14px;color:var(--magenta);font-weight:700;margin-bottom:8px;}
+  .wcard{border:1px solid var(--line);border-radius:22px;padding:26px 24px 26px 26px;
+    position:relative;overflow:hidden;
+    background:linear-gradient(165deg,var(--card),var(--card-2));}
+  /* 왼쪽 컬러 액센트 바 */
+  .wcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--wc,var(--magenta));}
+  /* 카드별 색조 — 질문 성격에 맞춰 */
+  .wcard:nth-child(1){--wc:#FF6BA8;
+    background:linear-gradient(160deg,rgba(255,107,168,.16),rgba(255,107,168,.04) 60%,var(--card-2));
+    border-color:rgba(255,107,168,.32);}
+  .wcard:nth-child(2){--wc:#C58CFF;
+    background:linear-gradient(160deg,rgba(157,92,255,.18),rgba(157,92,255,.04) 60%,var(--card-2));
+    border-color:rgba(157,92,255,.34);}
+  .wcard:nth-child(3){--wc:#FFC861;
+    background:linear-gradient(160deg,rgba(255,200,97,.15),rgba(255,200,97,.035) 60%,var(--card-2));
+    border-color:rgba(255,200,97,.34);}
+  .wcard .q{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--wc,var(--magenta));}
   .wcard h3{font-family:"Gowun Batang",serif;font-size:20px;font-weight:700;margin-bottom:10px;line-height:1.45;}
   .wcard p{font-size:15px;color:var(--soft);line-height:1.7;}
 
@@ -70,30 +84,128 @@
   .quality h2{font-family:"Gowun Batang",serif;font-size:25px;font-weight:700;margin-bottom:18px;line-height:1.5;}
   .quality h2 em{font-style:normal;background:linear-gradient(105deg,var(--magenta),var(--gold));
     -webkit-background-clip:text;background-clip:text;color:transparent;}
-  .qrows{display:flex;flex-direction:column;gap:16px;margin-top:24px;text-align:left;}
-  .qrow{display:flex;gap:14px;align-items:flex-start;}
-  .qcheck{width:26px;height:26px;flex-shrink:0;border-radius:8px;
-    background:linear-gradient(150deg,var(--magenta),var(--violet));
-    display:flex;align-items:center;justify-content:center;margin-top:2px;}
-  .qcheck svg{width:14px;height:14px;stroke:#fff;stroke-width:2.6;fill:none;}
-  .qrow .qt{font-size:15.5px;color:var(--white);font-weight:600;line-height:1.55;}
-  .qrow .qt span{display:block;font-size:13.5px;color:var(--soft);font-weight:400;margin-top:2px;}
+  .qrows{display:flex;flex-direction:column;gap:12px;margin-top:26px;text-align:left;}
+  .qrow{display:flex;gap:15px;align-items:flex-start;
+    background:rgba(252,249,255,.05);border:1px solid var(--line);
+    border-radius:16px;padding:18px 18px;
+    transition:background .25s ease,border-color .25s ease;}
+  .qrow:hover{background:rgba(252,249,255,.08);border-color:rgba(16,185,164,.45);}
+  .qcheck{width:30px;height:30px;flex-shrink:0;border-radius:9px;
+    background:linear-gradient(150deg,#5FB89C,#3E8E8C);
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
+    box-shadow:0 3px 10px rgba(62,142,140,.28);}
+  .qcheck svg{width:16px;height:16px;stroke:#fff;stroke-width:2.8;fill:none;}
+  .qrow .qt{font-size:16.5px;color:var(--white);font-weight:700;line-height:1.5;}
+  .qrow .qt span{display:block;font-size:14px;color:var(--soft);font-weight:400;
+    margin-top:6px;line-height:1.65;}
 
   /* 후기 */
-  .rcard{background:linear-gradient(165deg,var(--card),var(--card-2));border:1px solid var(--line);
-    border-radius:22px;padding:24px;margin-bottom:14px;}
-  .stars{color:var(--gold);font-size:15px;letter-spacing:3px;margin-bottom:10px;}
+  .rcard{border:1px solid var(--line);border-radius:22px;padding:24px;margin-bottom:14px;
+    background:linear-gradient(165deg,rgba(255,255,255,.04),rgba(255,255,255,.015));}
+  /* 카드마다 또렷하게 다른 색조 — 지루함 방지 */
+  .rcard:nth-child(2){background:linear-gradient(160deg,rgba(255,78,155,.26),rgba(255,78,155,.08));
+    border-color:rgba(255,78,155,.5);}
+  .rcard:nth-child(3){background:linear-gradient(160deg,rgba(255,184,60,.26),rgba(255,184,60,.07));
+    border-color:rgba(255,184,60,.52);}
+  .rcard:nth-child(4){background:linear-gradient(160deg,rgba(157,92,255,.30),rgba(157,92,255,.09));
+    border-color:rgba(157,92,255,.55);}
+  .rcard:nth-child(5){background:linear-gradient(160deg,rgba(46,204,180,.24),rgba(46,204,180,.07));
+    border-color:rgba(46,204,180,.5);}
+  .rcard:nth-child(6){background:linear-gradient(160deg,rgba(80,130,255,.27),rgba(80,130,255,.08));
+    border-color:rgba(80,130,255,.52);}
+  .rstars{color:var(--gold);font-size:15px;letter-spacing:3px;margin-bottom:10px;}
+  .rtag{display:inline-block;font-size:11.5px;font-weight:700;
+    padding:4px 11px;border-radius:999px;margin-bottom:12px;letter-spacing:.02em;
+    color:var(--soft);background:rgba(252,249,255,.07);border:1px solid rgba(252,249,255,.16);}
+  /* 태그 색도 카드별로 매칭 */
+  .rcard:nth-child(2) .rtag{color:#FFA6C4;background:rgba(255,78,155,.2);border-color:rgba(255,78,155,.45);}
+  .rcard:nth-child(3) .rtag{color:#FFD98A;background:rgba(255,184,60,.2);border-color:rgba(255,184,60,.48);}
+  .rcard:nth-child(4) .rtag{color:#CFA6FF;background:rgba(157,92,255,.22);border-color:rgba(157,92,255,.5);}
+  .rcard:nth-child(5) .rtag{color:#7FEADC;background:rgba(46,204,180,.2);border-color:rgba(46,204,180,.46);}
+  .rcard:nth-child(6) .rtag{color:#A6BCFF;background:rgba(80,130,255,.2);border-color:rgba(80,130,255,.48);}
   .rcard p{font-size:15px;margin-bottom:12px;font-weight:500;line-height:1.65;}
   .rcard .who{font-size:13px;color:var(--muted);font-weight:500;}
 
+  /* 오늘의 운세 카드 */
+  .fortune{margin:0 16px;}
+  .fcard{background:linear-gradient(160deg,rgba(255,78,155,.16),rgba(157,92,255,.18));
+    border:1px solid var(--line);border-radius:30px;padding:40px 26px;text-align:center;
+    position:relative;overflow:hidden;}
+  .fcard .ftop{font-size:12.5px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-bottom:10px;}
+  .fcard .ftitle{font-family:"Gowun Batang",serif;font-size:25px;font-weight:700;line-height:1.45;margin-bottom:8px;}
+  .fcard .fdate{font-size:13px;color:var(--muted);margin-bottom:26px;}
+
+  .fdraw{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    background:linear-gradient(135deg,var(--magenta),var(--violet));color:#fff;
+    font-size:16px;font-weight:800;padding:16px 34px;border:none;border-radius:14px;
+    cursor:pointer;letter-spacing:-.01em;box-shadow:0 12px 30px rgba(157,92,255,.34);
+    transition:transform .2s ease,box-shadow .2s ease;}
+  .fdraw:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(157,92,255,.46);}
+  .fdraw:active{transform:translateY(0) scale(.98);}
+  .fdraw svg{width:19px;height:19px;}
+  .fdraw .spin{display:inline-block;animation:rot .9s linear infinite;}
+  @keyframes rot{to{transform:rotate(360deg)}}
+
+  .fresult{display:none;margin-top:10px;animation:fade .5s ease both;}
+  .fresult.show{display:block;}
+  @keyframes fade{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:none}}
+
+  .fheadline{font-family:"Gowun Batang",serif;font-size:23px;font-weight:700;
+    line-height:1.5;margin-bottom:6px;}
+  .fheadline em{font-style:normal;background:linear-gradient(105deg,var(--magenta),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .fscore{font-size:14px;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:20px;}
+  .fmsg{font-size:16px;color:var(--white);line-height:1.7;max-width:360px;margin:0 auto 22px;font-weight:500;}
+
+  .flucky{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
+  .fchip{background:rgba(252,249,255,.06);border:1px solid var(--line);border-radius:14px;
+    padding:11px 15px;min-width:96px;}
+  .fchip .fk{display:block;font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:4px;letter-spacing:.04em;}
+  .fchip .fv{display:block;font-size:15px;color:var(--white);font-weight:700;}
+  .fdot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;
+    vertical-align:-1px;box-shadow:0 0 8px currentColor;}
+
+  /* 가려진 디테일 — 궁금증 유발 */
+  .ftease{position:relative;background:rgba(18,10,34,.5);border:1px dashed var(--line);
+    border-radius:16px;padding:22px 18px;margin-bottom:22px;overflow:hidden;min-height:108px;}
+  .ftease .ftease-in{filter:blur(5px);opacity:.55;font-size:14.5px;color:var(--soft);
+    line-height:1.75;user-select:none;}
+  .ftease .flock{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:7px;padding:14px;text-align:center;
+    background:linear-gradient(180deg,rgba(33,21,65,.2),rgba(33,21,65,.78));}
+  .ftease .flock .lk{font-size:13.5px;color:var(--gold);font-weight:700;line-height:1.5;}
+  .ftease .flock .lk2{font-size:12.5px;color:var(--soft);line-height:1.5;}
+
+  /* 운세 결과에 따라 카드 색이 바뀌는 테마 */
+  .fcard{transition:background .6s ease,border-color .6s ease,box-shadow .6s ease;}
+  .fcard.themed{background:
+      linear-gradient(160deg,var(--ft-a,rgba(255,78,155,.16)),var(--ft-b,rgba(157,92,255,.18)));
+    border-color:var(--ft-line,var(--line));
+    box-shadow:0 0 60px -12px var(--ft-glow,transparent);}
+  .fheadline em,.fscore{transition:color .4s ease;}
+
+  .fredraw{background:none;border:none;color:var(--violet);font-size:13.5px;font-weight:700;
+    cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:6px;}
+  .fredraw:hover{color:var(--magenta);}
+
   /* 가격/안내 */
   .price{text-align:center;}
-  .pbox{background:linear-gradient(165deg,var(--card),var(--card-2));border:1px solid var(--line);
-    border-radius:24px;padding:32px 26px;max-width:360px;margin:0 auto;}
-  .pbox .pname{font-size:15px;color:var(--gold);font-weight:700;margin-bottom:6px;}
-  .pbox .pdesc{font-size:14px;color:var(--soft);line-height:1.7;}
-  .pbox .pline{height:1px;background:var(--line);margin:20px 0;}
-  .pbox .pnote{font-size:13.5px;color:var(--muted);}
+  .pbox{position:relative;background:#1A1330;
+    border:1px solid rgba(254,229,0,.32);
+    border-radius:24px;padding:30px 28px 28px;max-width:360px;margin:0 auto;
+    box-shadow:0 14px 34px -16px rgba(254,229,0,.3);overflow:hidden;}
+  /* 상단 카톡 옐로우 라인 */
+  .pbox::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;
+    background:linear-gradient(90deg,var(--kakao),#FFD84D);}
+  /* 카톡 말풍선 뱃지 */
+  .pbox .pbubble{display:inline-flex;align-items:center;gap:6px;
+    background:var(--kakao);color:var(--kakao-ink);font-size:12px;font-weight:800;
+    padding:6px 13px;border-radius:999px;margin-bottom:16px;letter-spacing:-.01em;}
+  .pbox .pbubble svg{width:14px;height:14px;}
+  .pbox .pname{font-size:18px;color:#FFE552;font-weight:800;margin-bottom:10px;letter-spacing:-.01em;}
+  .pbox .pdesc{font-size:15.5px;color:var(--white);line-height:1.6;font-weight:600;}
+  .pbox .pline{height:1px;background:rgba(254,229,0,.22);margin:18px 0;}
+  .pbox .pnote{font-size:13px;color:var(--soft);line-height:1.6;}
 
   /* 최종 CTA — 카톡 */
   .final{padding:60px 0 90px;text-align:center;}
@@ -188,16 +300,73 @@
     </div>
   </section>
 
+  <!-- 오늘의 운세 (재미용) -->
+  <section class="sec fortune" style="padding-top:0" id="fortune">
+    <div class="fcard">
+      <p class="ftop">✦ 무료 미리보기</p>
+      <h2 class="ftitle serif">오늘의 운세<br>한 장 뽑아볼까요?</h2>
+      <p class="fdate" id="fDate"></p>
+
+      <button class="fdraw" id="fBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="3.2"/></svg>
+        오늘의 운세 뽑기
+      </button>
+
+      <div class="fresult" id="fResult" aria-live="polite">
+        <p class="fheadline serif" id="fHead"></p>
+        <p class="fscore" id="fScore"></p>
+        <p class="fmsg" id="fMsg"></p>
+
+        <div class="flucky">
+          <div class="fchip"><span class="fk">오늘의 키워드</span><span class="fv" id="fKeyword"></span></div>
+          <div class="fchip"><span class="fk">행운 색</span><span class="fv" id="fColor"></span></div>
+          <div class="fchip"><span class="fk">행운 숫자</span><span class="fv" id="fNum"></span></div>
+          <div class="fchip"><span class="fk">행운 아이템</span><span class="fv" id="fItem"></span></div>
+        </div>
+
+        <div class="ftease">
+          <p class="ftease-in" id="fTease"></p>
+          <div class="flock">
+            <span class="lk">🔒 오늘 가장 중요한 한 줄은 숨겨뒀어요</span>
+            <span class="lk2">정확히 언제, 무엇을 조심할지는 카톡 상담에서 ✦</span>
+          </div>
+        </div>
+
+        <button class="fredraw" id="fAgain" type="button">↻ 다른 카드 다시 뽑기</button>
+      </div>
+    </div>
+  </section>
+
   <!-- 후기 -->
   <section class="sec" style="padding-top:0">
     <div class="wrap">
-      <div class="head"><span class="label">생생 후기 ✦</span><h2 class="serif">먼저 본 사람들 반응</h2></div>
-      <div class="rcard"><div class="stars" aria-label="별 다섯개">★★★★★</div>
-        <p>"그냥 운세 앱이랑 차원이 다르네요;; 제 성격 콕 짚어주셔서 보면서 계속 웃었어요 ㅋㅋ"</p>
-        <p class="who">— 30대 직장인</p></div>
-      <div class="rcard"><div class="stars" aria-label="별 다섯개">★★★★★</div>
-        <p>"올해 운 풀이 너무 디테일해서 깜놀! PDF로 정리해주셔서 친구들한테 자랑했어요 ㅎㅎ"</p>
-        <p class="who">— 20대</p></div>
+      <div class="head"><span class="label">생생 후기 ✦</span><h2 class="serif">먼저 본 사람들 반응</h2>
+        <p class="sub">실제로 상담받은 분들이 남겨주신 후기예요 ✦</p></div>
+
+      <div class="rcard"><div class="rstars" aria-label="별 다섯개">★★★★★</div>
+        <span class="rtag">성격·기질</span>
+        <p>"그냥 운세 앱이랑 차원이 다르네요;; 제 성격 콕 짚어주셔서 보면서 계속 웃었어요 ㅋㅋ '왜 늘 일을 혼자 떠안나' 했는데 이유를 알겠더라고요."</p>
+        <p class="who">— 30대 · 직장인</p></div>
+
+      <div class="rcard"><div class="rstars" aria-label="별 다섯개">★★★★★</div>
+        <span class="rtag">올해 운</span>
+        <p>"올해 운 풀이 너무 디테일해서 깜놀! 하반기에 기회 온다고 하셨는데 진짜 이직 제안이 들어왔어요. PDF로 정리해주셔서 친구들한테도 자랑했어요 ㅎㅎ"</p>
+        <p class="who">— 20대 · 취준 끝낸 사회초년생</p></div>
+
+      <div class="rcard"><div class="rstars" aria-label="별 다섯개">★★★★★</div>
+        <span class="rtag">연애·관계</span>
+        <p>"반신반의하면서 신청했는데… 제 연애 패턴을 어떻게 이렇게 정확히 아세요? 늘 비슷한 사람한테 끌리는 이유까지 설명해주셔서 소름이었어요."</p>
+        <p class="who">— 30대 · 워킹맘</p></div>
+
+      <div class="rcard"><div class="rstars" aria-label="별 다섯개">★★★★★</div>
+        <span class="rtag">재물·일</span>
+        <p>"마흔 넘어서 처음 사주 봤는데 점쟁이 말투 아니라서 좋았어요. 지금이 벌일 때인지 지킬 때인지 차분하게 짚어주셔서 사업 결정에 큰 도움이 됐습니다."</p>
+        <p class="who">— 40대 · 자영업</p></div>
+
+      <div class="rcard"><div class="rstars" aria-label="별 다섯개">★★★★★</div>
+        <span class="rtag">인생 흐름</span>
+        <p>"딸이 권해서 큰 기대 없이 받았는데, 제 지난 50년이 흐름으로 쭉 정리되니까 마음이 묘하게 편안해지더군요. 남은 인생을 어떻게 보낼지 생각하게 됐어요."</p>
+        <p class="who">— 50대 · 은퇴 준비 중</p></div>
     </div>
   </section>
 
@@ -206,6 +375,10 @@
     <div class="wrap">
       <div class="head"><span class="label">상담 안내</span><h2 class="serif">진행은 아주 간단해요!</h2></div>
       <div class="pbox">
+        <span class="pbubble">
+          <svg viewBox="0 0 24 24" fill="#3C1E1E" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.86 1.9 5.36 4.76 6.78-.21.77-.76 2.8-.87 3.24-.14.55.2.54.42.39.17-.12 2.7-1.84 3.8-2.59.61.09 1.24.13 1.89.13 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
+          카톡으로 진행
+        </span>
         <p class="pname">✦ 1:1 맞춤 사주 풀이</p>
         <p class="pdesc">카톡으로 생년월일시만 톡!<br>제대로 계산해서 정성껏 풀어드려요.</p>
         <div class="pline"></div>
@@ -247,6 +420,134 @@
   // 오픈 카톡방 주소를 여기에 넣으세요 (예: https://open.kakao.com/o/xxxxxxx)
   var KAKAO_URL="https://open.kakao.com/o/saor5Tyi";
   ["kakaoLink"].forEach(function(id){var el=document.getElementById(id);if(el)el.setAttribute("href",KAKAO_URL);});
+
+  /* ===== 오늘의 운세 (재미용 랜덤) ===== */
+  (function(){
+    // 각 운세는 분위기(tone)를 가지며, tone에 따라 카드 색 테마가 바뀜
+    // tone: hot(열정/기회) / cool(차분/안정) / gold(행운/재물) / mystic(귀인/관계) / rest(휴식/조심)
+    var THEMES={
+      hot:   {a:"rgba(255,78,155,.22)", b:"rgba(255,120,80,.20)",  line:"rgba(255,120,140,.4)", glow:"rgba(255,78,120,.5)",  accent:"#FF6B9D", scoreCol:"#FF8FB0"},
+      cool:  {a:"rgba(92,124,255,.18)", b:"rgba(79,209,197,.16)",  line:"rgba(92,160,255,.38)", glow:"rgba(79,160,255,.42)", accent:"#6FB6FF", scoreCol:"#7FD8E0"},
+      gold:  {a:"rgba(255,200,97,.20)", b:"rgba(255,140,80,.16)",  line:"rgba(255,200,97,.45)",  glow:"rgba(255,190,90,.5)",  accent:"#FFC861", scoreCol:"#FFD37A"},
+      mystic:{a:"rgba(157,92,255,.22)", b:"rgba(214,92,255,.18)",  line:"rgba(180,110,255,.42)", glow:"rgba(160,90,255,.5)",  accent:"#C58CFF", scoreCol:"#D6A6FF"},
+      rest:  {a:"rgba(110,120,160,.18)",b:"rgba(79,160,150,.14)",  line:"rgba(130,150,190,.34)", glow:"rgba(120,150,180,.32)",accent:"#A6B8D8", scoreCol:"#B6C6E0"}
+    };
+
+    var heads=[
+      {t:"오늘은 <em>흐름이 트이는</em> 날", s:5, tone:"hot"},
+      {t:"<em>작은 행운</em>이 따라오는 날", s:4, tone:"gold"},
+      {t:"잔잔하지만 <em>단단한</em> 하루", s:4, tone:"cool"},
+      {t:"<em>기회의 문</em>이 살짝 열려요", s:5, tone:"hot"},
+      {t:"한 박자 <em>쉬어가면 좋은</em> 날", s:3, tone:"rest"},
+      {t:"마음먹은 일에 <em>속도가 붙는</em> 날", s:5, tone:"hot"},
+      {t:"<em>귀인</em>을 만날 수 있는 하루", s:4, tone:"mystic"},
+      {t:"조심하면 <em>오히려 풀리는</em> 날", s:3, tone:"rest"},
+      {t:"<em>돈복</em>이 슬며시 들어오는 날", s:5, tone:"gold"},
+      {t:"<em>마음의 안개</em>가 걷히는 하루", s:4, tone:"cool"},
+      {t:"<em>설레는 인연</em>이 스치는 날", s:4, tone:"mystic"},
+      {t:"<em>참는 자</em>에게 복이 오는 날", s:3, tone:"rest"},
+      {t:"오래 묵힌 일이 <em>풀리는</em> 날", s:5, tone:"gold"},
+      {t:"<em>직감이 적중</em>하는 하루", s:4, tone:"mystic"},
+      {t:"평범함 속 <em>반짝임</em>이 있는 날", s:4, tone:"cool"},
+      {t:"<em>큰 결정</em>은 잠시 미뤄둘 날", s:3, tone:"rest"}
+    ];
+
+    var msgs=[
+      "오전엔 신중하게, 오후엔 과감하게. 망설였던 연락 한 통이 의외의 흐름을 만들어요.",
+      "지갑보다 마음이 먼저 움직이는 날. 작은 친절이 큰 운으로 돌아옵니다.",
+      "서두르지 않아도 괜찮아요. 오늘은 ‘버티는 사람’이 결국 웃는 날이에요.",
+      "미뤄둔 일을 꺼내기 좋은 날. 첫 발만 떼면 나머지는 술술 풀려요.",
+      "낯선 제안이 들어와도 문은 닫지 마세요. 그 안에 기회가 숨어 있어요.",
+      "감정 소비는 잠깐 멈춤. 오늘 아낀 에너지가 내일의 무기가 됩니다.",
+      "가까운 사람의 한마디에 답이 있어요. 오늘은 귀를 여는 게 운을 여는 길.",
+      "돈보다 타이밍이 중요한 날. 살까 말까 싶으면 ‘하루만’ 더 기다려보세요.",
+      "오늘의 무기는 미소예요. 표정 하나가 분위기를 통째로 바꿔놓습니다.",
+      "익숙한 길보다 새 길이 운을 부르는 날. 평소 안 가던 곳에 답이 있어요.",
+      "마음이 급할수록 손을 천천히. 꼼꼼함이 오늘의 손실을 막아줘요.",
+      "받기보다 먼저 베푸세요. 오늘 내민 손이 내일 큰 인연으로 돌아옵니다.",
+      "작은 정리정돈이 큰 운을 부릅니다. 책상 한 칸만 비워도 머리가 맑아져요.",
+      "‘아니오’라고 말해야 할 순간이 와요. 거절이 곧 나를 지키는 선택입니다.",
+      "오늘 들은 칭찬은 흘리지 마세요. 그 안에 당신의 다음 기회가 숨어 있어요.",
+      "조급함만 내려놓으면 오늘 하루가 선물이 됩니다. 흐름에 한 번 맡겨보세요.",
+      "지출보다 약속이 더 중요한 날. 신뢰를 지키면 돈이 따라옵니다.",
+      "오늘은 ‘듣는 귀’가 복을 부르는 날. 말은 반, 경청은 두 배로."
+    ];
+
+    // 가려둘 디테일 (블러 처리 + 자물쇠) — 궁금증 유발
+    var teases=[
+      "특히 OO시 무렵엔 △△을(를) 조심해야 하는데, 이건 사주 일간에 따라 사람마다 완전히 달라요. 당신의 경우엔 특히 □□ 쪽이…",
+      "오늘 당신에게 가장 잘 맞는 사람·방향·결정 타이밍이 따로 있어요. 사주로 보면 그 시점이 꽤 또렷하게 △△ 무렵으로…",
+      "이번 주에 ‘절대 놓치면 안 되는 날’이 하루 숨어 있어요. 세운 흐름으로 보면 그 날짜는 대략 □□일 즈음으로…",
+      "재물운이 들어오는 통로가 사람마다 달라요. 당신은 △△을(를) 통해 들어오는 편인데, 그게 열리는 시기가…",
+      "오늘 만나면 좋은 ‘귀인의 띠’가 따로 있어요. 당신 사주와 맞는 띠는 □□ 쪽인데, 그 사람이 가져올 기회는…",
+      "조심해야 할 ‘관계의 함정’이 하나 보여요. 당신 일간 기준으로는 △△한 사람을 특히 경계해야 하는데…"
+    ];
+
+    var colors=[
+      {n:"산호빛 핑크",c:"#FF6B9D"},{n:"깊은 보라",c:"#9D5CFF"},{n:"황금빛 노랑",c:"#FFC861"},
+      {n:"청록빛 민트",c:"#4FD1C5"},{n:"차분한 네이비",c:"#5C7CFF"},{n:"맑은 코랄",c:"#FF8A65"},
+      {n:"은은한 라벤더",c:"#B79CFF"},{n:"포근한 베이지",c:"#E6C9A8"},{n:"싱그러운 라임",c:"#A8E063"},
+      {n:"고운 자수정",c:"#C56CFF"},{n:"잔잔한 스카이블루",c:"#7EC8FF"},{n:"따뜻한 테라코타",c:"#E07856"}
+    ];
+    var items=["손목시계","향수 한 방울","따뜻한 차","빨간 펜","작은 거울","이어폰","손수건","민트사탕",
+      "동전 지갑","향초","작은 식물","나무 빗","가죽 카드지갑","스카프","책 한 권","유리병"];
+    var keywords=["설렘","결단","여유","집중","연결","비움","용기","기다림","베풂","정리","직감","신뢰"];
+
+    function pick(a){return a[Math.floor(Math.random()*a.length)];}
+
+    var card=document.querySelector(".fcard");
+    var btn=document.getElementById("fBtn"),res=document.getElementById("fResult"),
+        again=document.getElementById("fAgain"),dateEl=document.getElementById("fDate");
+    if(dateEl){var d=new Date();dateEl.textContent=d.getFullYear()+"년 "+(d.getMonth()+1)+"월 "+d.getDate()+"일 오늘의 운세";}
+
+    function star(n){return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n);}
+
+    function applyTheme(tone){
+      var th=THEMES[tone]||THEMES.mystic;
+      card.style.setProperty("--ft-a",th.a);
+      card.style.setProperty("--ft-b",th.b);
+      card.style.setProperty("--ft-line",th.line);
+      card.style.setProperty("--ft-glow",th.glow);
+      card.classList.add("themed");
+      // 헤드라인 강조색 & 점수색도 테마에 맞춰
+      var em=document.querySelector("#fHead em");
+      if(em)em.style.background="none",em.style.webkitTextFillColor=th.accent,em.style.color=th.accent;
+      document.getElementById("fScore").style.color=th.scoreCol;
+    }
+
+    function draw(){
+      var h=pick(heads),m=pick(msgs),t=pick(teases),col=pick(colors),
+          num=Math.floor(Math.random()*9)+1,it=pick(items),kw=pick(keywords);
+      document.getElementById("fHead").innerHTML=h.t;
+      document.getElementById("fScore").innerHTML="오늘의 총운 "+star(h.s);
+      document.getElementById("fMsg").textContent=m;
+      document.getElementById("fColor").innerHTML='<span class="fdot" style="color:'+col.c+'"></span>'+col.n;
+      document.getElementById("fNum").textContent=num+" 번";
+      document.getElementById("fItem").textContent=it;
+      var kwEl=document.getElementById("fKeyword");if(kwEl)kwEl.textContent="#"+kw;
+      document.getElementById("fTease").textContent=t;
+      applyTheme(h.tone);
+      if(!res.classList.contains("show")){res.classList.add("show");}
+    }
+
+    if(btn){
+      btn.addEventListener("click",function(){
+        var orig=btn.innerHTML;
+        btn.innerHTML='<span class="spin">✦</span> 별자리 정렬 중...';
+        btn.disabled=true;
+        setTimeout(function(){
+          draw();
+          btn.style.display="none";
+          btn.innerHTML=orig;btn.disabled=false;
+          res.scrollIntoView({behavior:"smooth",block:"center"});
+        },850);
+      });
+    }
+    if(again){again.addEventListener("click",function(){
+      again.textContent="↻ 별을 다시 부르는 중...";
+      setTimeout(function(){draw();again.textContent="↻ 다른 카드 다시 뽑기";},500);
+    });}
+  })();
 </script>
 </body>
 </html>
